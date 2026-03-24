@@ -12,7 +12,7 @@ class MSosmedController extends Controller
      */
     public function index()
     {
-        $data = MSosmed::latest()->paginate(10);
+        $data = MSosmed::latest()->get();
         return view('msosmed.index', compact('data'));
     }
 

@@ -12,7 +12,7 @@ class AboutUsController extends Controller
      */
     public function index()
     {
-        $data = AboutUs::latest()->paginate(10);
+        $data = AboutUs::latest()->get();
         return view('aboutus.index', compact('data'));
     }
 
@@ -32,10 +32,10 @@ class AboutUsController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $validated['img'] = $request->file('img')->store('images', 'public');
+        $validated['image'] = $request->file('image')->store('images', 'public');
         AboutUs::create($validated);
         return redirect()->route('aboutus.index');
     }
@@ -65,10 +65,13 @@ class AboutUsController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $validated['img'] = $request->file('img')->store('images', 'public');
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('images', 'public');
+        }
+
         $getId = AboutUs::findOrFail($id);
         $getId->update($validated);
         return redirect()->route('aboutus.index');

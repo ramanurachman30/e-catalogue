@@ -12,7 +12,7 @@ class MCategoriesController extends Controller
      */
     public function index()
     {
-        $data = MCategories::latest()->paginate(10);
+        $data = MCategories::latest()->get();
         return view('mcategories.index', compact('data'));
     }
 

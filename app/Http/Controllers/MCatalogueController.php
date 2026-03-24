@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\MCatalogue;
+use App\Models\MCategories;
+use App\Models\MStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MCatalogueController extends Controller
 {
@@ -21,7 +24,9 @@ class MCatalogueController extends Controller
      */
     public function create()
     {
-        return view('mcatalogue.create');
+        $categories = MCategories::all();
+        $statuses = MStatus::all();
+        return view('mcatalogue.create', compact('categories', 'statuses'));
     }
 
     /**
@@ -31,10 +36,15 @@ class MCatalogueController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'category_id' => 'required|exists:mcategories,id',
-            'status_id' => 'required|exists:mstatuses,id',
+            'description' => 'required|string',
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'category_id' => 'required|exists:m_categories,id',
+            'status_id' => 'required|exists:m_status,id',
         ]);
+
+        if ($request->hasFile('img')) {
+            $validated['img'] = $request->file('img')->store('catalogue', 'public');
+        }
 
         MCatalogue::create($validated);
         return redirect()->route('mcatalogue.index');
@@ -54,7 +64,9 @@ class MCatalogueController extends Controller
     public function edit(string $id)
     {
         $getId = MCatalogue::findOrFail($id);
-        return view('mcatalogue.edit', compact('getId'));
+        $categories = MCategories::all();
+        $statuses = MStatus::all();
+        return view('mcatalogue.edit', compact('getId', 'categories', 'statuses'));
     }
 
     /**
@@ -64,12 +76,21 @@ class MCatalogueController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'category_id' => 'required|exists:mcategories,id',
-            'status_id' => 'required|exists:mstatuses,id',
+            'description' => 'required|string',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'category_id' => 'required|exists:m_categories,id',
+            'status_id' => 'required|exists:m_status,id',
         ]);
 
         $getId = MCatalogue::findOrFail($id);
+
+        if ($request->hasFile('img')) {
+            if ($getId->img) {
+                Storage::disk('public')->delete($getId->img);
+            }
+            $validated['img'] = $request->file('img')->store('catalogue', 'public');
+        }
+
         $getId->update($validated);
         return redirect()->route('mcatalogue.index');
     }
@@ -80,6 +101,9 @@ class MCatalogueController extends Controller
     public function destroy(string $id)
     {
         $getId = MCatalogue::findOrFail($id);
+        if ($getId->img) {
+            Storage::disk('public')->delete($getId->img);
+        }
         $getId->delete();
         return redirect()->route('mcatalogue.index');
     }

@@ -32,6 +32,7 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @stack('styles')
   </head>
   <body class="with-welcome-text">
     <div class="container-scroller">
@@ -98,9 +99,39 @@
             </li>
             <li class="nav-item nav-category">Menu</li>
             <li class="nav-item {{ request()->routeIs('test.*') ? 'active' : '' }}">
-                <a href="#" class="nav-link">
+                <a href="{{ route('aboutus.index') }}" class="nav-link">
                     <i class="mdi mdi-grid-large menu-icon"></i>
-                    <span class="menu-title">Test</span>
+                    <span class="menu-title">About Us</span>
+                </a>
+            </li>
+            <li class="nav-item {{ request()->routeIs('test.*') ? 'active' : '' }}">
+                <a href="{{ route('mcategories.index') }}" class="nav-link">
+                    <i class="mdi mdi-grid-large menu-icon"></i>
+                    <span class="menu-title">Master Categories</span>
+                </a>
+            </li>
+            <li class="nav-item {{ request()->routeIs('test.*') ? 'active' : '' }}">
+                <a href="{{ route('msosmed.index') }}" class="nav-link">
+                    <i class="mdi mdi-grid-large menu-icon"></i>
+                    <span class="menu-title">Master Sosmed</span>
+                </a>
+            </li>
+            <li class="nav-item {{ request()->routeIs('test.*') ? 'active' : '' }}">
+                <a href="{{ route('mstatus.index') }}" class="nav-link">
+                    <i class="mdi mdi-grid-large menu-icon"></i>
+                    <span class="menu-title">Master Status</span>
+                </a>
+            </li>
+            <li class="nav-item {{ request()->routeIs('test.*') ? 'active' : '' }}">
+                <a href="{{ route('mvissionmission.index') }}" class="nav-link">
+                    <i class="mdi mdi-grid-large menu-icon"></i>
+                    <span class="menu-title">Master Vission & Mission</span>
+                </a>
+            </li>
+            <li class="nav-item {{ request()->routeIs('test.*') ? 'active' : '' }}">
+                <a href="{{ route('mcatalogue.index') }}" class="nav-link">
+                    <i class="mdi mdi-grid-large menu-icon"></i>
+                    <span class="menu-title">Master Catalogue</span>
                 </a>
             </li>
           </ul>
@@ -148,5 +179,6 @@
     <script src="{{ asset('assets/js/jquery.cookie.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/js/dashboard.js') }}"></script>
     <!-- End custom js for this page-->
+    @stack('scripts')
   </body>
 </html>

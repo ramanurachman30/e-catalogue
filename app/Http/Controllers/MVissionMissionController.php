@@ -12,7 +12,7 @@ class MVissionMissionController extends Controller
      */
     public function index()
     {
-        $data = MVissionMission::latest()->paginate(10);
+        $data = MVissionMission::latest()->get();
         return view('mvissionmission.index', compact('data'));
     }
 
@@ -31,7 +31,7 @@ class MVissionMissionController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'type' => 'nullable|enum:vission,mission',
+            'type' => 'nullable|in:vission,mission',
             'order' => 'nullable|integer',
         ]);
 
@@ -63,7 +63,7 @@ class MVissionMissionController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'type' => 'nullable|enum:vission,mission',
+            'type' => 'nullable|in:vission,mission',
             'order' => 'nullable|integer',
         ]);
 

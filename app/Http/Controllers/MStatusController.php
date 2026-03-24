@@ -12,7 +12,8 @@ class MStatusController extends Controller
      */
     public function index()
     {
-        $data = MStatus::latest()->paginate(10);
+        $data = MStatus::latest()->get();
+        // dd($data);
         return view('mstatus.index', compact('data'));
     }
 
@@ -34,7 +35,9 @@ class MStatusController extends Controller
             'description' => 'nullable|string'
         ]);
 
-        MStatus::created($validated);
+        // dd($validated);
+
+        MStatus::create($validated);
         return redirect()->route('mstatus.index');
     }
 

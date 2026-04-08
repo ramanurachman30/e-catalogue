@@ -15,6 +15,10 @@ class MCatalogue extends Model
         'img',
         'category_id',
         'status_id',
+        'date_release',
+        'size_painting',
+        'author',
+        'price',
     ];
 
     public function category()

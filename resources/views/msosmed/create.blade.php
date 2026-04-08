@@ -15,6 +15,13 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label for="slug">Slug</label>
+                            <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug" name="slug" value="{{ old('slug') }}" placeholder="Enter slug" required>
+                            @error('slug')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label for="description">Description</label>
                             <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="5" placeholder="Enter description">{{ old('description') }}</textarea>
                             @error('description')

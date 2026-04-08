@@ -15,11 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('description');
+            $table->string('size_painting')->nullable();
+            $table->string('author')->nullable();
+            $table->double('price');
             $table->string('img');
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('m_categories')->onDelete('cascade');
             $table->bigInteger('status_id')->unsigned();
             $table->foreign('status_id')->references('id')->on('m_status')->onDelete('cascade');
+            $table->date('date_release')->nullable();
             $table->timestamps();
         });
     }

@@ -40,6 +40,10 @@ class MCatalogueController extends Controller
             'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'category_id' => 'required|exists:m_categories,id',
             'status_id' => 'required|exists:m_status,id',
+            'date_release' => 'required|date',
+            'size_painting' => 'required|string',
+            'author' => 'required|string',
+            'price' => 'required|numeric',
         ]);
 
         if ($request->hasFile('img')) {
@@ -80,6 +84,10 @@ class MCatalogueController extends Controller
             'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'category_id' => 'required|exists:m_categories,id',
             'status_id' => 'required|exists:m_status,id',
+            'date_release' => 'required|date',
+            'size_painting' => 'required|string',
+            'author' => 'required|string',
+            'price' => 'required|numeric',
         ]);
 
         $getId = MCatalogue::findOrFail($id);

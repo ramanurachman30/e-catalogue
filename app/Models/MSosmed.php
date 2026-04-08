@@ -11,6 +11,7 @@ class MSosmed extends Model
 
     protected $fillable = [
         'name',
+        'slug',
         'description',
         'icon',
         'url',

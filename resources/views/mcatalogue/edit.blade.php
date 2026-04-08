@@ -17,6 +17,22 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="author">Author of Painting</label>
+                            <input type="text" class="form-control @error('author') is-invalid @enderror" id="author" name="author" value="{{ old('author', $getId->author) }}" placeholder="Enter Author of Painting" required>
+                            @error('author')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="author">Price</label>
+                            <input type="text" class="form-control @error('author') is-invalid @enderror" id="author" name="author" value="{{ old('author', $getId->author) }}" placeholder="Enter Author of Painting" required>
+                            @error('author')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
                             <label for="category_id">Category</label>
                             <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror" required>
                                 @foreach($categories as $category)
@@ -65,13 +81,29 @@
                             @error('img')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>
                             @enderror
-                            
+
                             @if($getId->img)
                                 <div class="mt-3">
                                     <p>Current Image:</p>
                                     <img src="{{ asset('storage/' . $getId->img) }}" alt="{{ $getId->name }}" style="width: 150px; height: auto; border-radius: 10px;">
                                 </div>
                             @endif
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date_release">Date Release</label>
+                            <input type="date" class="form-control @error('date_release') is-invalid @enderror" id="date_release" name="date_release" value="{{ old('date_release', $getId->date_release) }}" placeholder="Enter Date Release" required>
+                            @error('date_release')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="size_painting">Size of Painting</label>
+                            <input type="text" class="form-control @error('size_painting') is-invalid @enderror" id="size_painting" name="size_painting" value="{{ old('size_painting', $getId->size_painting) }}" placeholder="Enter Size Of Painting" required>
+                            @error('size_painting')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <button type="submit" class="btn btn-primary me-2">Update</button>

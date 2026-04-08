@@ -16,6 +16,22 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="author">Author of Painting</label>
+                            <input type="text" class="form-control @error('author') is-invalid @enderror" id="author" name="author" value="{{ old('author') }}" placeholder="Enter Author of Painting" required>
+                            @error('author')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price') }}" placeholder="Enter Price" required>
+                            @error('price')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
                             <label for="category_id">Category</label>
                             <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror" required>
                                 <option value="" disabled selected>Select Category</option>
@@ -68,6 +84,22 @@
                             <div class="mt-3">
                                 <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 200px; border-radius: 5px; border: 1px solid #ddd; padding: 5px;">
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="date_release">Date Release</label>
+                            <input type="date" class="form-control @error('date_release') is-invalid @enderror" id="date_release" name="date_release" value="{{ old('date_release') }}" placeholder="Enter Date Release" required>
+                            @error('date_release')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="size_painting">Size of Painting</label>
+                            <input type="text" class="form-control @error('size_painting') is-invalid @enderror" id="size_painting" name="size_painting" value="{{ old('size_painting') }}" placeholder="Enter Size Of Painting" required>
+                            @error('size_painting')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <button type="submit" class="btn btn-primary me-2">Submit</button>

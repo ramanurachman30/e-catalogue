@@ -134,6 +134,12 @@
                     <span class="menu-title">Master Catalogue</span>
                 </a>
             </li>
+            <li class="nav-item {{ request()->routeIs('test.*') ? 'active' : '' }}">
+                <a href="{{ route('events.index') }}" class="nav-link">
+                    <i class="mdi mdi-grid-large menu-icon"></i>
+                    <span class="menu-title">Events</span>
+                </a>
+            </li>
           </ul>
         </nav>
         <!-- partial -->

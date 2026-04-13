@@ -6,6 +6,7 @@ use App\Http\Controllers\MCatalogueController;
 use App\Http\Controllers\MSosmedController;
 use App\Http\Controllers\MVissionMissionController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('msosmed', MSosmedController::class);
     Route::resource('mvissionmission', MVissionMissionController::class);
     Route::resource('aboutus', AboutUsController::class);
+    Route::resource('events', EventsController::class);
 });
 
 require __DIR__.'/auth.php';

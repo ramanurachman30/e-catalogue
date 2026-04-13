@@ -14,7 +14,6 @@ class Events extends Model
         'start_date',
         'end_date',
         'location',
-        'price',
         'image',
     ];
 }

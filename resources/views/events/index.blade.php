@@ -4,19 +4,20 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                        <h4 class="card-title">About Us Data</h4>
-                        <a href="{{ route('aboutus.create') }}" class="btn btn-primary btn-icon-text">
+                        <h4 class="card-title">Events Data</h4>
+                        <a href="{{ route('events.create') }}" class="btn btn-primary btn-icon-text">
                             <i class="ti-plus btn-icon-prepend"></i>
-                            Add New Data
+                            Add New Event
                         </a>
                     </div>
                     <div class="table-responsive">
-                        <table id="aboutUsTable" class="table table-hover table-striped">
+                        <table id="eventsTable" class="table table-hover table-striped">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Title</th>
-                                    <th>Description</th>
+                                    <th>Name</th>
+                                    <th>Date</th>
+                                    <th>Location</th>
                                     <th>Image</th>
                                     <th>Actions</th>
                                 </tr>
@@ -25,21 +26,30 @@
                                 @foreach($data as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->title }}</td>
-                                    <td>{!! Str::limit($item->description, 50) !!}</td>
+                                    <td>
+                                        <div class="font-weight-bold">{{ $item->name }}</div>
+                                        <small class="text-muted">{{ Str::limit($item->description, 30) }}</small>
+                                    </td>
+                                    <td>
+                                        <div>{{ \Carbon\Carbon::parse($item->start_date)->format('d M Y') }}</div>
+                                        @if($item->start_date != $item->end_date)
+                                            <small class="text-muted">until {{ \Carbon\Carbon::parse($item->end_date)->format('d M Y') }}</small>
+                                        @endif
+                                    </td>
+                                    <td>{{ $item->location }}</td>
                                     <td>
                                         @if($item->image)
-                                            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" style="width: 50px; height: 50px; border-radius: 5px;">
+                                            <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" style="width: 50px; height: 50px; border-radius: 5px;">
                                         @else
                                             <span class="badge badge-secondary">No Image</span>
                                         @endif
                                     </td>
                                     <td>
                                         <div class="d-flex">
-                                            <a href="{{ route('aboutus.edit', $item->id) }}" class="btn btn-warning btn-sm me-2" title="Edit">
+                                            <a href="{{ route('events.edit', $item->id) }}" class="btn btn-warning btn-sm me-2" title="Edit">
                                                 <i class="mdi mdi-pencil"></i>
                                             </a>
-                                            <form id="delete-form-{{ $item->id }}" action="{{ route('aboutus.destroy', $item->id) }}" method="POST" class="d-inline">
+                                            <form id="delete-form-{{ $item->id }}" action="{{ route('events.destroy', $item->id) }}" method="POST" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="button" class="btn btn-danger btn-sm btn-delete" data-id="{{ $item->id }}" title="Delete">
@@ -52,6 +62,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <div class="mt-4">
+                        {{ $data->links() }}
                     </div>
                 </div>
             </div>
@@ -74,7 +87,6 @@
             padding-top: 15px;
             padding-bottom: 15px;
         }
-        /* Custom SweetAlert Style */
         .swal2-popup {
             font-family: 'Nunito', sans-serif;
             border-radius: 15px;
@@ -88,32 +100,23 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
-            // Initialize DataTable
-            $('#aboutUsTable').DataTable({
+            $('#eventsTable').DataTable({
                 "pageLength": 10,
                 "ordering": true,
                 "info": true,
+                "paging": false, // Handled by Laravel pagination
                 "language": {
                     "search": "Search:",
-                    "lengthMenu": "Show _MENU_ entries",
-                    "info": "Showing _START_ to _END_ of _TOTAL_ entries",
-                    "paginate": {
-                        "first": "First",
-                        "last": "Last",
-                        "next": "Next",
-                        "previous": "Previous"
-                    }
                 }
             });
 
-            // SweetAlert Delete Confirmation
             $('.btn-delete').on('click', function() {
                 const id = $(this).data('id');
                 const form = $('#delete-form-' + id);
 
                 Swal.fire({
                     title: 'Are you sure?',
-                    text: "This data will be permanently deleted!",
+                    text: "This event will be permanently deleted!",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#ef5350',

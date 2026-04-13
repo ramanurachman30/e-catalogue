@@ -46,8 +46,38 @@
         </div>
     </div>
 
+    @push('styles')
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+    <style>
+        .note-editor.note-frame {
+            border: 1px solid #dee2e6;
+        }
+        .note-editor.note-frame .note-editing-area .note-editable {
+            background-color: #fff;
+        }
+    </style>
+    @endpush
+
     @push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <script>
+        $(document).ready(function() {
+            $('#description').summernote({
+                placeholder: 'Enter description',
+                tabsize: 2,
+                height: 200,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    ['view', ['fullscreen', 'codeview', 'help']]
+                ]
+            });
+        });
+
         // Preview image before upload
         document.getElementById('image').onchange = function (evt) {
             const [file] = this.files

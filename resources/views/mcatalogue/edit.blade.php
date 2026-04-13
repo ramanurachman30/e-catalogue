@@ -25,14 +25,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="author">Price</label>
-                            <input type="text" class="form-control @error('author') is-invalid @enderror" id="author" name="author" value="{{ old('author', $getId->author) }}" placeholder="Enter Author of Painting" required>
-                            @error('author')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
                             <label for="category_id">Category</label>
                             <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror" required>
                                 @foreach($categories as $category)

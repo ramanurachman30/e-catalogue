@@ -18,7 +18,6 @@ return new class extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->string('location');
-            $table->double('price')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });

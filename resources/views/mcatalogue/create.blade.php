@@ -24,14 +24,6 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="price">Price</label>
-                            <input type="number" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price') }}" placeholder="Enter Price" required>
-                            @error('price')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
                             <label for="category_id">Category</label>
                             <select name="category_id" id="category_id" class="form-control @error('category_id') is-invalid @enderror" required>
                                 <option value="" disabled selected>Select Category</option>

@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('description');
             $table->string('size_painting')->nullable();
             $table->string('author')->nullable();
-            $table->double('price');
             $table->string('img');
             $table->bigInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('m_categories')->onDelete('cascade');

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\MCategoriesController;
 use App\Http\Controllers\MStatusController;
 use App\Http\Controllers\MCatalogueController;
@@ -10,9 +11,10 @@ use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [LandingPageController::class, 'index'])->name('home');
+Route::get('/about', [LandingPageController::class, 'about'])->name('about');
+Route::get('/gallery', [LandingPageController::class, 'gallery'])->name('gallery');
+Route::get('/event', [LandingPageController::class, 'event'])->name('event');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

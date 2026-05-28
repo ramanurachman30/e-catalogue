@@ -45,12 +45,13 @@
             </button>
           </div>
           <div>
-            <a class="navbar-brand brand-logo" href="{{ url('/dashboard') }}">
+            <h1><span class="text-primary fw-bold fs-5">{{ config('app.name', 'Superadmin App') }}</span></h1>
+            {{-- <a class="navbar-brand brand-logo" href="{{ url('/dashboard') }}">
               <img src="{{ asset('assets/images/logo.svg') }}" alt="logo" />
             </a>
             <a class="navbar-brand brand-logo-mini" href="{{ url('/dashboard') }}">
               <img src="{{ asset('assets/images/logo-mini.svg') }}" alt="logo" />
-            </a>
+            </a> --}}
           </div>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-top">

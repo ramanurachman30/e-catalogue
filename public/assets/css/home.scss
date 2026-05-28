@@ -1,0 +1,80 @@
+  // Custom.scss
+// Option A: Include all of Bootstrap
+
+// Include any default variable overrides here (though functions won’t be available)
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+// Then add additional custom code here
+
+body {
+  background-color: #f8f9fa;
+}
+ 
+
+.navbar {
+  background-color: #8b1c1c;
+  transition: top 0.2s ease;
+}
+
+.navbar-toggler {
+  border: none !important;
+  box-shadow: none !important;
+  color:white;
+}
+
+.navbar .container .collapse .navbar-nav:hover{
+  color:#882828;
+}
+
+.navbar-toggler:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.navbar-brand, .nav-link {
+  color: white !important;
+}
+
+.navbar-nav .nav-item a:hover{
+  color: rgb(65, 48, 48);
+}
+
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+  margin-top: 40px;
+}
+
+.hero h1 {
+  font-weight: bold;
+}
+
+.btn-custom {
+  background-color: #8b1c1c;
+  color: white;
+}
+
+.btn-custom:hover {
+  background-color:#882828;
+}
+
+.gallery-img {
+  height: 400px;
+  border-radius: 10px;
+}
+
+.card img {
+  height: 150px;
+  object-fit: cover;
+}
+
+footer {
+  background-color: #ddd;
+  padding: 15px;
+  text-align: center;
+}
+
+
+
+

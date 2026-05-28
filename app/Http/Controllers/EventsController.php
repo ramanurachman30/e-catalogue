@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Events;
+use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class EventsController extends Controller
 {
+    use ImageUploadTrait;
     /**
      * Display a listing of the resource.
      */
@@ -36,11 +38,11 @@ class EventsController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
             'location' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ]);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('events', 'public');
+            $validated['image'] = $this->uploadImage($request->file('image'), 'events');
         }
 
         Events::create($validated);
@@ -76,16 +78,14 @@ class EventsController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
             'location' => 'required|string|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ]);
 
         $getId = Events::findOrFail($id);
 
         if ($request->hasFile('image')) {
-            if ($getId->image) {
-                Storage::disk('public')->delete($getId->image);
-            }
-            $validated['image'] = $request->file('image')->store('events', 'public');
+            $this->deleteImage($getId->image);
+            $validated['image'] = $this->uploadImage($request->file('image'), 'events');
         }
 
         $getId->update($validated);
@@ -98,9 +98,7 @@ class EventsController extends Controller
     public function destroy(string $id)
     {
         $getId = Events::findOrFail($id);
-        if ($getId->image) {
-            Storage::disk('public')->delete($getId->image);
-        }
+        $this->deleteImage($getId->image);
         $getId->delete();
         return redirect()->route('events.index')->with('success', 'Event deleted successfully.');
     }

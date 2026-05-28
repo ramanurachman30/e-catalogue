@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\MCatalogue;
 use App\Models\MCategories;
 use App\Models\MStatus;
+use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class MCatalogueController extends Controller
 {
+    use ImageUploadTrait;
     /**
      * Display a listing of the resource.
      */
@@ -37,17 +39,16 @@ class MCatalogueController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120', // batas ditingkatkan karena akan dikompresi
             'category_id' => 'required|exists:m_categories,id',
             'status_id' => 'required|exists:m_status,id',
             'date_release' => 'required|date',
             'size_painting' => 'required|string',
             'author' => 'required|string',
-            'price' => 'required|numeric',
         ]);
 
         if ($request->hasFile('img')) {
-            $validated['img'] = $request->file('img')->store('catalogue', 'public');
+            $validated['img'] = $this->uploadImage($request->file('img'), 'catalogue');
         }
 
         MCatalogue::create($validated);
@@ -81,22 +82,19 @@ class MCatalogueController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120',
             'category_id' => 'required|exists:m_categories,id',
             'status_id' => 'required|exists:m_status,id',
             'date_release' => 'required|date',
             'size_painting' => 'required|string',
             'author' => 'required|string',
-            'price' => 'required|numeric',
         ]);
 
         $getId = MCatalogue::findOrFail($id);
 
         if ($request->hasFile('img')) {
-            if ($getId->img) {
-                Storage::disk('public')->delete($getId->img);
-            }
-            $validated['img'] = $request->file('img')->store('catalogue', 'public');
+            $this->deleteImage($getId->img);
+            $validated['img'] = $this->uploadImage($request->file('img'), 'catalogue');
         }
 
         $getId->update($validated);
@@ -109,9 +107,7 @@ class MCatalogueController extends Controller
     public function destroy(string $id)
     {
         $getId = MCatalogue::findOrFail($id);
-        if ($getId->img) {
-            Storage::disk('public')->delete($getId->img);
-        }
+        $this->deleteImage($getId->img);
         $getId->delete();
         return redirect()->route('mcatalogue.index');
     }

@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\AboutUs;
+use App\Traits\ImageUploadTrait;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AboutUsController extends Controller
 {
+    use ImageUploadTrait;
     /**
      * Display a listing of the resource.
      */
@@ -32,10 +35,13 @@ class AboutUsController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ]);
 
-        $validated['image'] = $request->file('image')->store('images', 'public');
+        if ($request->hasFile('image')) {
+            $validated['image'] = $this->uploadImage($request->file('image'), 'aboutus');
+        }
+        
         AboutUs::create($validated);
         return redirect()->route('aboutus.index');
     }
@@ -65,14 +71,16 @@ class AboutUsController extends Controller
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ]);
 
+        $getId = AboutUs::findOrFail($id);
+
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('images', 'public');
+            $this->deleteImage($getId->image);
+            $validated['image'] = $this->uploadImage($request->file('image'), 'aboutus');
         }
 
-        $getId = AboutUs::findOrFail($id);
         $getId->update($validated);
         return redirect()->route('aboutus.index');
     }
@@ -83,6 +91,7 @@ class AboutUsController extends Controller
     public function destroy(string $id)
     {
         $getId = AboutUs::findOrFail($id);
+        $this->deleteImage($getId->image);
         $getId->delete();
         return redirect()->route('aboutus.index');
     }

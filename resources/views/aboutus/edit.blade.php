@@ -16,11 +16,38 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="description">Description</label>
-                            <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="5" placeholder="Enter description">{{ old('description', $getId->description) }}</textarea>
+                            <label for="sub_title">Sub Title</label>
+                            <input type="text" class="form-control @error('sub_title') is-invalid @enderror" id="sub_title" name="sub_title" value="{{ old('sub_title', $getId->sub_title) }}" placeholder="Enter sub title">
+                            @error('sub_title')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Hero Description (Sub-title)</label>
+                            <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" rows="5" placeholder="Enter hero description">{{ old('description', $getId->description) }}</textarea>
                             @error('description')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="content_left">Content Left (Dropcap Section)</label>
+                                    <textarea class="form-control @error('content_left') is-invalid @enderror" id="content_left" name="content_left" rows="5">{{ old('content_left', $getId->content_left) }}</textarea>
+                                    @error('content_left')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="content_right">Content Right (Beside Image)</label>
+                                    <textarea class="form-control @error('content_right') is-invalid @enderror" id="content_right" name="content_right" rows="5">{{ old('content_right', $getId->content_right) }}</textarea>
+                                    @error('content_right')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="image">Image</label>
@@ -62,8 +89,8 @@
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#description').summernote({
-                placeholder: 'Enter description',
+            $('#description, #content_left, #content_right').summernote({
+                placeholder: 'Enter content...',
                 tabsize: 2,
                 height: 200,
                 toolbar: [

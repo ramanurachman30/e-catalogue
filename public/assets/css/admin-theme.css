@@ -1,0 +1,77 @@
+/* Custom Admin Theme to match Landing Page */
+:root {
+  --bs-primary: #a3322a;
+  --bs-primary-rgb: 163, 50, 42;
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Montserrat', sans-serif;
+}
+
+body {
+  font-family: var(--font-sans) !important;
+}
+
+h1, h2, h3, h4, h5, h6, .welcome-text, .menu-title {
+  font-family: var(--font-serif);
+}
+
+.text-primary {
+  color: #a3322a !important;
+}
+
+.btn-primary {
+  --bs-btn-bg: #a3322a;
+  --bs-btn-border-color: #a3322a;
+  --bs-btn-hover-bg: #8b2922;
+  --bs-btn-hover-border-color: #8b2922;
+  --bs-btn-active-bg: #8b2922;
+  --bs-btn-active-border-color: #8b2922;
+  --bs-btn-disabled-bg: #a3322a;
+  --bs-btn-disabled-border-color: #a3322a;
+  background-color: #a3322a !important;
+  border-color: #a3322a !important;
+}
+
+.btn-primary:hover {
+  background-color: #8b2922 !important;
+  border-color: #8b2922 !important;
+}
+
+.badge-primary {
+  background-color: #a3322a !important;
+  border-color: #a3322a !important;
+  color: #ffffff !important;
+}
+
+.sidebar .nav .nav-item.active > .nav-link i,
+.sidebar .nav .nav-item.active > .nav-link .menu-title,
+.sidebar .nav .nav-item.active > .nav-link .menu-arrow {
+  color: #a3322a !important;
+}
+
+.sidebar .nav .nav-item.active > .nav-link {
+  background: #f8f9fa !important;
+}
+
+/* Form elements */
+.form-check .form-check-label input[type=checkbox]:checked + .input-helper:before,
+.form-check .form-check-label input[type=radio]:checked + .input-helper:before {
+  background: #a3322a !important;
+}
+
+/* Nav links in sidebar hover */
+.sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link, 
+.sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link i, 
+.sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link .menu-title, 
+.sidebar .nav:not(.sub-menu) > .nav-item:hover > .nav-link .menu-arrow {
+  color: #a3322a;
+}
+
+/* Progress bars */
+.progress .progress-bar.bg-primary {
+  background-color: #a3322a !important;
+}
+
+/* Dropdown items */
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .dropdown-menu .dropdown-item i.text-primary {
+  color: #a3322a !important;
+}

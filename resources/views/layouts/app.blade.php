@@ -8,6 +8,11 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('assets/vendors/feather/feather.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
@@ -26,6 +31,7 @@
 
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/admin-theme.css') }}">
     <!-- endinject -->
 
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
@@ -99,43 +105,43 @@
               </a>
             </li>
             <li class="nav-item nav-category">Menu</li>
-            <li class="nav-item {{ request()->routeIs('test.*') ? 'active' : '' }}">
+            <li class="nav-item {{ request()->routeIs('aboutus.*') ? 'active' : '' }}">
                 <a href="{{ route('aboutus.index') }}" class="nav-link">
                     <i class="mdi mdi-grid-large menu-icon"></i>
                     <span class="menu-title">About Us</span>
                 </a>
             </li>
-            <li class="nav-item {{ request()->routeIs('test.*') ? 'active' : '' }}">
+            <li class="nav-item {{ request()->routeIs('mcategories.*') ? 'active' : '' }}">
                 <a href="{{ route('mcategories.index') }}" class="nav-link">
                     <i class="mdi mdi-grid-large menu-icon"></i>
                     <span class="menu-title">Master Categories</span>
                 </a>
             </li>
-            <li class="nav-item {{ request()->routeIs('test.*') ? 'active' : '' }}">
+            <li class="nav-item {{ request()->routeIs('msosmed.*') ? 'active' : '' }}">
                 <a href="{{ route('msosmed.index') }}" class="nav-link">
                     <i class="mdi mdi-grid-large menu-icon"></i>
                     <span class="menu-title">Master Sosmed</span>
                 </a>
             </li>
-            <li class="nav-item {{ request()->routeIs('test.*') ? 'active' : '' }}">
+            <li class="nav-item {{ request()->routeIs('mstatus.*') ? 'active' : '' }}">
                 <a href="{{ route('mstatus.index') }}" class="nav-link">
                     <i class="mdi mdi-grid-large menu-icon"></i>
                     <span class="menu-title">Master Status</span>
                 </a>
             </li>
-            <li class="nav-item {{ request()->routeIs('test.*') ? 'active' : '' }}">
+            <li class="nav-item {{ request()->routeIs('mvissionmission.*') ? 'active' : '' }}">
                 <a href="{{ route('mvissionmission.index') }}" class="nav-link">
                     <i class="mdi mdi-grid-large menu-icon"></i>
                     <span class="menu-title">Master Vission & Mission</span>
                 </a>
             </li>
-            <li class="nav-item {{ request()->routeIs('test.*') ? 'active' : '' }}">
+            <li class="nav-item {{ request()->routeIs('mcatalogue.*') ? 'active' : '' }}">
                 <a href="{{ route('mcatalogue.index') }}" class="nav-link">
                     <i class="mdi mdi-grid-large menu-icon"></i>
                     <span class="menu-title">Master Catalogue</span>
                 </a>
             </li>
-            <li class="nav-item {{ request()->routeIs('test.*') ? 'active' : '' }}">
+            <li class="nav-item {{ request()->routeIs('events.*') ? 'active' : '' }}">
                 <a href="{{ route('events.index') }}" class="nav-link">
                     <i class="mdi mdi-grid-large menu-icon"></i>
                     <span class="menu-title">Events</span>

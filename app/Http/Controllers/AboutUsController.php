@@ -32,9 +32,17 @@ class AboutUsController extends Controller
      */
     public function store(Request $request)
     {
+        // Check if data already exists
+        if (AboutUs::count() > 0) {
+            return redirect()->route('aboutus.index')->with('error', 'About Us data already exists. You can only edit the existing record.');
+        }
+
         $validated = $request->validate([
             'title' => 'required|string|max:255',
+            'sub_title' => 'nullable|string|max:255',
             'description' => 'nullable|string',
+            'content_left' => 'nullable|string',
+            'content_right' => 'nullable|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ]);
 
@@ -70,7 +78,10 @@ class AboutUsController extends Controller
     {
         $validated = $request->validate([
             'title' => 'required|string|max:255',
+            'sub_title' => 'nullable|string|max:255',
             'description' => 'nullable|string',
+            'content_left' => 'nullable|string',
+            'content_right' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ]);
 

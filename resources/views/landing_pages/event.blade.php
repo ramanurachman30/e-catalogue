@@ -27,7 +27,7 @@
         </p>
 
         <div class="mt-4">
-            {!! nl2br(e($upcomingEvent->description)) !!}
+            {!! $upcomingEvent->description !!}
         </div>
 
         <hr>

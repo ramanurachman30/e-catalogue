@@ -151,11 +151,11 @@
         @media (max-width: 768px) {
             .hero-modern h1 { font-size: 2.5rem; }
             .carousel-item { height: 400px; }
-            .carousel-caption { 
-                padding: 20px; 
-                left: 5%; 
-                right: 5%; 
-                max-width: 100%; 
+            .carousel-caption {
+                padding: 20px;
+                left: 5%;
+                right: 5%;
+                max-width: 100%;
                 bottom: 5%;
             }
         }
@@ -206,7 +206,7 @@
         <div class="row g-5">
             @foreach($catalogues as $catalogue)
             @php
-                $wa_number = $whatsapp->url ?? '628381090769';
+                $wa_number = $whatsapp->url ?? '6288291296357';
                 $wa_number = preg_replace('/[^0-9]/', '', $wa_number);
                 $message = urlencode("Halo Stasa Gallery, saya tertarik untuk memesan karya seni berikut:\n\nNama Produk: " . $catalogue->name . "\nAuthor: " . $catalogue->author . "\nUkuran: " . $catalogue->size_painting . "\n\nMohon informasi lebih lanjut. Terima kasih.");
                 $wa_url = "https://wa.me/{$wa_number}?text={$message}";
@@ -252,7 +252,7 @@
                 <a href="{{ route('about') }}" class="btn btn-primary-custom">Tentang Kami</a>
             </div>
             <div class="col-lg-6 mt-5 mt-lg-0">
-                <img src="{{ asset('assets/images/image1.jpeg') }}" class="img-fluid shadow-lg" alt="About Us Preview">
+                <img src="{{ asset('storage/' . $about->image) }}" class="img-fluid shadow-lg" alt="About Us Preview">
             </div>
         </div>
     </div>

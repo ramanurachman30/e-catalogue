@@ -5,10 +5,12 @@
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <h4 class="card-title">About Us Data</h4>
+                        @if($data->count() == 0)
                         <a href="{{ route('aboutus.create') }}" class="btn btn-primary btn-icon-text">
                             <i class="ti-plus btn-icon-prepend"></i>
                             Add New Data
                         </a>
+                        @endif
                     </div>
                     <div class="table-responsive">
                         <table id="aboutUsTable" class="table table-hover table-striped">
@@ -16,6 +18,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Title</th>
+                                    <th>Sub Title</th>
                                     <th>Description</th>
                                     <th>Image</th>
                                     <th>Actions</th>
@@ -26,7 +29,8 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->title }}</td>
-                                    <td>{!! Str::limit($item->description, 50) !!}</td>
+                                    <td>{{ $item->sub_title }}</td>
+                                    <td>{!! Str::limit($item->description, 20) !!}</td>
                                     <td>
                                         @if($item->image)
                                             <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->title }}" style="width: 50px; height: 50px; border-radius: 5px;">

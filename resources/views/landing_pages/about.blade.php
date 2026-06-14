@@ -11,8 +11,11 @@
 <section class="hero">
     <div class="container">
         <h1>{{ $about->title ?? 'ABOUT STASA GALLERY' }}</h1>
+        @if(isset($about->sub_title))
+            <h4 class="fw-bold mt-2">{{ $about->sub_title }}</h4>
+        @endif
         <div class="mt-3">
-            {!! nl2br(e($about->description ?? 'Lahirnya Karya masdibyo yang dipamerkan dalam peresmian Stasa Gallery masdibyo')) !!}
+            {!! $about->description ?? '' !!}
         </div>
         <hr>
         <p>
@@ -31,26 +34,25 @@
         <div class="row">
             <!-- Kiri -->
             <div class="col-md-6">
-                <p class="dropcap">
-                    Aku tak pernah mengeluhkan apa pun kepada siapa pun,
-                    kecuali pada kesunyianku sendiri...
-                </p>
-                <p>
-                    Jujur, selama ini aku bisa mengabaikan sikap mereka
-                    dengan terus berkarya...
-                </p>
+                <div class="description-left">
+                    @php
+                        $contentLeft = $about->content_left ?? '';
+                        // Inject 'dropcap' class ONLY into the first <p> tag
+                        $contentLeft = Str::replaceFirst('<p>', '<p class="dropcap">', $contentLeft);
+                    @endphp
+                    {!! $contentLeft !!}
+                </div>
             </div>
 
             <!-- Kanan -->
             <div class="col-md-6">
-                <p>
-                    Karya-karyaku adalah orang-orang berkelas,
-                    dengan daya beli yang layak...
-                </p>
+                <div class="description-right">
+                    {!! $about->content_right ?? '' !!}
+                </div>
                 @if($about && $about->image)
-                    <img src="{{ asset('storage/' . $about->image) }}" class="img-fluid rounded shadow" alt="About Image">
+                    <img src="{{ asset('storage/' . $about->image) }}" class="img-fluid rounded shadow mt-3" alt="About Image">
                 @else
-                    <img src="{{ asset('assets/images/image1.jpeg') }}" class="img-fluid rounded shadow" alt="Default Artwork">
+                    <img src="{{ asset('assets/images/image1.jpeg') }}" class="img-fluid rounded shadow mt-3" alt="Default Artwork">
                 @endif
             </div>
         </div>

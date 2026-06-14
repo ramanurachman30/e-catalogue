@@ -17,7 +17,8 @@ class LandingPageController extends Controller
         $catalogues = MCatalogue::with(['category', 'status'])->latest()->take(4)->get();
         $sosmeds = MSosmed::all();
         $whatsapp = MSosmed::where('name', 'like', '%whatsapp%')->first();
-        return view('landing_pages.home', compact('catalogues', 'sosmeds', 'whatsapp'));
+        $about = AboutUs::first();
+        return view('landing_pages.home', compact('catalogues', 'sosmeds', 'whatsapp', 'about'));
     }
 
     public function about()

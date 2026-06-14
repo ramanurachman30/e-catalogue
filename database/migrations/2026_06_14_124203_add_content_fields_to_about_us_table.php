@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('about_us', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->text('description')->nullable();
-            $table->string('image')->nullable();
-            $table->timestamps();
+        Schema::table('about_us', function (Blueprint $table) {
+            $table->text('content_left')->nullable()->after('description');
+            $table->text('content_right')->nullable()->after('content_left');
         });
     }
 
@@ -25,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('about_us');
+        Schema::table('about_us', function (Blueprint $table) {
+            $table->dropColumn(['content_left', 'content_right']);
+        });
     }
 };

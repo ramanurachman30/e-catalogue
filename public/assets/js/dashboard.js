@@ -6,8 +6,8 @@
       var graphGradient = document.getElementById("performanceLine").getContext('2d');
       var graphGradient2 = document.getElementById("performanceLine").getContext('2d');
       var saleGradientBg = graphGradient.createLinearGradient(5, 0, 5, 100);
-      saleGradientBg.addColorStop(0, 'rgba(26, 115, 232, 0.18)');
-      saleGradientBg.addColorStop(1, 'rgba(26, 115, 232, 0.02)');
+      saleGradientBg.addColorStop(0, 'rgba(163, 50, 42, 0.18)');
+      saleGradientBg.addColorStop(1, 'rgba(163, 50, 42, 0.02)');
       var saleGradientBg2 = graphGradient2.createLinearGradient(100, 0, 50, 150);
       saleGradientBg2.addColorStop(0, 'rgba(0, 208, 255, 0.19)');
       saleGradientBg2.addColorStop(1, 'rgba(0, 208, 255, 0.03)');
@@ -21,14 +21,14 @@
             data: [50, 110, 60, 290, 200, 115, 130, 170, 90, 210, 240, 280, 200],
             backgroundColor: saleGradientBg,
             borderColor: [
-                '#1F3BB3',
+                '#a3322a',
             ],
             borderWidth: 1.5,
             fill: true, // 3: no fill
             pointBorderWidth: 1,
             pointRadius: [4, 4, 4, 4, 4,4, 4, 4, 4, 4,4, 4, 4],
             pointHoverRadius: [2, 2, 2, 2, 2,2, 2, 2, 2, 2,2, 2, 2],
-            pointBackgroundColor: ['#1F3BB3)', '#1F3BB3', '#1F3BB3', '#1F3BB3','#1F3BB3)', '#1F3BB3', '#1F3BB3', '#1F3BB3','#1F3BB3)', '#1F3BB3', '#1F3BB3', '#1F3BB3','#1F3BB3)'],
+            pointBackgroundColor: ['#a3322a', '#a3322a', '#a3322a', '#a3322a','#a3322a', '#a3322a', '#a3322a', '#a3322a','#a3322a', '#a3322a', '#a3322a', '#a3322a','#a3322a'],
             pointBorderColor: ['#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff','#fff',],
         },{
           label: 'Last week',
@@ -197,9 +197,9 @@
           },{
             label: 'This week',
             data: [215, 290, 210, 250, 290, 230, 290, 210, 280, 220, 190, 300],
-            backgroundColor: "#1F3BB3",
+            backgroundColor: "#a3322a",
             borderColor: [
-                '#1F3BB3',
+                '#a3322a',
             ],
             borderWidth: 0,
               barPercentage: 0.35,
@@ -369,13 +369,13 @@
           datasets: [{
             data: [40, 20, 30, 10],
             backgroundColor: [
-              "#1F3BB3",
+              "#a3322a",
               "#FDD0C7",
               "#52CDFF",
               "#81DADA"
             ],
             borderColor: [
-              "#1F3BB3",
+              "#a3322a",
               "#FDD0C7",
               "#52CDFF",
               "#81DADA"

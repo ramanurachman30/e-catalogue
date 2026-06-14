@@ -11,7 +11,10 @@ class AboutUs extends Model
 
     protected $fillable = [
         'title',
+        'sub_title',
         'description',
+        'content_left',
+        'content_right',
         'image',
     ];
 }

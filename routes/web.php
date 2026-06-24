@@ -15,6 +15,8 @@ Route::get('/', [LandingPageController::class, 'index'])->name('home');
 Route::get('/about', [LandingPageController::class, 'about'])->name('about');
 Route::get('/gallery', [LandingPageController::class, 'gallery'])->name('gallery');
 Route::get('/event', [LandingPageController::class, 'event'])->name('event');
+Route::get('/event/{id}', [LandingPageController::class, 'eventDetail'])->name('event.detail');
+Route::get('/gallery/{id}', [LandingPageController::class, 'catalogueDetail'])->name('catalogue.detail');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

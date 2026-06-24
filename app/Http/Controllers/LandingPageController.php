@@ -62,4 +62,26 @@ class LandingPageController extends Controller
         $sosmeds = MSosmed::all();
         return view('landing_pages.event', compact('events', 'upcomingEvent', 'sosmeds'));
     }
+
+    public function eventDetail($id)
+    {
+        $event = Events::findOrFail($id);
+        $otherEvents = Events::where('id', '!=', $id)->latest()->take(3)->get();
+        $sosmeds = MSosmed::all();
+        return view('landing_pages.event_detail', compact('event', 'otherEvents', 'sosmeds'));
+    }
+
+    public function catalogueDetail($id)
+    {
+        $catalogue = MCatalogue::with(['category', 'status'])->findOrFail($id);
+        $relatedCatalogues = MCatalogue::with(['category', 'status'])
+            ->where('id', '!=', $id)
+            ->where('category_id', $catalogue->category_id)
+            ->latest()
+            ->take(4)
+            ->get();
+        $sosmeds = MSosmed::all();
+        $whatsapp = MSosmed::where('name', 'like', '%whatsapp%')->first();
+        return view('landing_pages.catalogue_detail', compact('catalogue', 'relatedCatalogues', 'sosmeds', 'whatsapp'));
+    }
 }

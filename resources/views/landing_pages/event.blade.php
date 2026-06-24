@@ -56,7 +56,7 @@
                         <div class="card-body text-center d-flex flex-column">
                             <h6 class="card-title fw-bold">{{ $event->name }}</h6>
                             <p class="small text-muted">{{ \Carbon\Carbon::parse($event->start_date)->format('M Y') }}</p>
-                            <button class="btn btn-outline-secondary btn-sm mt-auto">Lihat Detail</button>
+                            <a href="{{ route('event.detail', $event->id) }}" class="btn btn-outline-secondary btn-sm mt-auto">Lihat Detail</a>
                         </div>
                     </div>
                 </div>

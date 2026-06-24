@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Stasa Gallery')</title>
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo-stasa.png') }}">
+
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -80,7 +83,7 @@
             opacity: 0.85;
         }
 
-        .navbar.scrolled .nav-link:hover, 
+        .navbar.scrolled .nav-link:hover,
         .navbar.scrolled .nav-link.active {
             opacity: 1;
         }
@@ -216,9 +219,9 @@
             <div class="col-lg-3 mb-3">
                 <h5 class="mb-4 text-white">Contact</h5>
                 <ul class="list-unstyled text-secondary">
-                    <li class="mb-2">Ciater Barat, Tangerang Selatan</li>
-                    <li class="mb-2">info@stasagallery.com</li>
-                    <li class="mb-2">+62 812 3456 7890</li>
+                    <li class="mb-2">Stasa Gallery, Tangerang Selatan</li>
+                    <li class="mb-2">arthapesonakreasi@gmail.com</li>
+                    <li class="mb-2">+62 812 2056 8007</li>
                 </ul>
             </div>
         </div>

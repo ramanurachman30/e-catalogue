@@ -213,13 +213,15 @@
             @endphp
             <div class="col-md-6 col-lg-3">
                 <div class="art-card">
-                    <div class="card-img-container">
-                        <img src="{{ asset('storage/' . $catalogue->img) }}" class="card-img-top h-100 w-100 object-fit-cover" alt="{{ $catalogue->name }}" onerror="this.src='{{ asset('assets/images/image2.jpeg') }}'">
-                        <div class="badge bg-dark position-absolute top-0 end-0 m-3 px-3 py-2 rounded-0 small">{{ $catalogue->status->name ?? 'Tersedia' }}</div>
-                    </div>
+                    <a href="{{ route('catalogue.detail', $catalogue->id) }}">
+                        <div class="card-img-container">
+                            <img src="{{ asset('storage/' . $catalogue->img) }}" class="card-img-top h-100 w-100 object-fit-cover" alt="{{ $catalogue->name }}" onerror="this.src='{{ asset('assets/images/image2.jpeg') }}'">
+                            <div class="badge bg-dark position-absolute top-0 end-0 m-3 px-3 py-2 rounded-0 small">{{ $catalogue->status->name ?? 'Tersedia' }}</div>
+                        </div>
+                    </a>
                     <div class="card-body">
                         <div class="author">{{ $catalogue->author }}</div>
-                        <h3 class="card-title">{{ $catalogue->name }}</h3>
+                        <h3 class="card-title"><a href="{{ route('catalogue.detail', $catalogue->id) }}" style="text-decoration: none; color: inherit;">{{ $catalogue->name }}</a></h3>
                         <div class="details">{{ $catalogue->size_painting }}</div>
                         <a href="{{ $wa_url }}" target="_blank" class="btn-wa-modern">
                              Pesan via WhatsApp
